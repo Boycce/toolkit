@@ -450,10 +450,17 @@ class Str {
    * @param  string  $separator To be used instead of space and other non-word characters.
    * @return string  The safe string
    */
-  static public function slug($string, $separator = '-', $allowed = 'a-z0-9') {
+  static public function slug($string, $separator = '-', $allowed = false) {
 
     $string = trim($string);
-    $string = static::lower($string);
+    
+    if (!$allowed) 
+      $allowed = (c::get('slugCharacters'))? c::get('slugCharacters') : 'a-z0-9';
+
+    // Check if uppercase is allowed.
+    $uppercase = (preg_match('/A-Z/', $allowed))? true : false;
+
+    if (!$uppercase) $string = static::lower($string);
     $string = static::ascii($string);
 
     // replace spaces with simple dashes
