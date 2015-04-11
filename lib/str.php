@@ -570,12 +570,15 @@ class Str {
   /**
    * A better way to strip slashes
    *
+   * Boycce: Removed extra stripslashes.
+   *
    * @param  string  $string
    * @return string
    */
   static public function stripslashes($string) {
     if(is_array($string)) return $string;
-    return get_magic_quotes_gpc() ? stripslashes(stripslashes($string)) : $string;
+    //return get_magic_quotes_gpc() ? stripslashes(stripslashes($string)) : $string;
+    return get_magic_quotes_gpc() ? stripslashes($string) : $string;
   }
 
   /**
