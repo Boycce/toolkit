@@ -455,7 +455,7 @@ class Str {
     $string = trim($string);
     
     if (!$allowed) 
-      $allowed = (c::get('slugCharacters'))? c::get('slugCharacters') : 'a-z0-9';
+      $allowed = (c::get('slugCharacters'))? c::get('slugCharacters') : 'a-z0-9-';
 
     // Check if uppercase is allowed.
     $uppercase = (preg_match('/A-Z/', $allowed))? true : false;
